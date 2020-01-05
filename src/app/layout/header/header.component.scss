@@ -1,0 +1,28 @@
+.navbar {
+    background:#007C89;
+    color:white;
+    a{
+        color:white;
+        text-decoration: none;
+    }
+    a:hover{
+        color:gold;
+        
+    }
+    
+    i{
+        color:white;
+    }
+    button[type=submit]{
+        border:1px solid white;
+    }
+    button[type=submit]:hover{
+        border:1px solid gold;
+        
+    }
+  
+   
+}
+
+
+
