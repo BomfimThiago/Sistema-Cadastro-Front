@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from './employee.service';
 import { EmployeeModel } from './employee.model';
-import { ThrowStmt } from '@angular/compiler';
 import { DataGridColumnModel } from 'ngx-ui-hero';
 import { DepartmentModel } from '../department/department.model';
 import { DepartmentService } from '../department/department.service';
@@ -12,7 +11,8 @@ import { DepartmentService } from '../department/department.service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-
+  departmentId: string;
+  search: string;
   employees: EmployeeModel[];
   departments: DepartmentModel[];
   columns: Array<DataGridColumnModel> = [
@@ -43,8 +43,8 @@ export class EmployeeComponent implements OnInit {
     this.getAllDepartments();
   }
 
-  getEmployees() {
-    this.employeeService.getEmployee()
+  private getEmployees() {
+    this.employeeService.getEmployees()
       .subscribe(result => {
         this.employees = result;
         console.log(result);
@@ -57,6 +57,15 @@ export class EmployeeComponent implements OnInit {
         this.departments = result;
         console.log(this.departments);
       });
+  }
+  getEmployeesBySearch() {
+    this.employeeService.getEmployeesBySearch(this.search)
+      .subscribe( result =>  this.employees = result);
+  }
+
+  getEmployeesByDepartmentId() {
+    this.employeeService.getEmployeesByDepartmentId(this.departmentId)
+      .subscribe( result =>  this.employees = result);
   }
 
 }

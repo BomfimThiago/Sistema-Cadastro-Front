@@ -12,7 +12,7 @@
               [maxlength]="200"
               [disabled]="false"
               [showValidations]="true"
-              [(ngModel)]="myModel"
+              [(ngModel)]="search"
               >
             </input-text>
             
@@ -21,19 +21,19 @@
         <div class="col-lg-2">
           <div class="form-group">
           
-            <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> Search</button>
+            <button type="button" class="btn btn-primary" (click)="getEmployeesBySearch()"><i class="fa fa-search"></i> Search</button>
           </div>
         </div>
         <div class="col-lg-2">
           <div class="form-group">
             <input-dropdown-search
-            name ="algo"
+            name ="searchByDepartment"
             displayTextProperty="name"
             valueProperty="id"
             placeholder="department..."
             searchPlaceholder="department"
-            [(ngModel)]="myDropdownSearchModel"
-            [disabled]="false"
+            [(ngModel)]="departmentId"
+            (onChange)=getEmployeesByDepartmentId()
             [data]="departments"        
             [showValidations]="true"
             >

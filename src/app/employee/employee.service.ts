@@ -10,8 +10,14 @@ export class EmployeeService {
 
   constructor(private http: HttpClient) { }
 
-  getEmployee() {
+  getEmployees() {
     return this.http.get<Array<EmployeeModel>>(this.url);
+  }
+  getEmployeesBySearch(q: string) {
+    return this.http.get<Array<EmployeeModel>>(`${this.url}/search?q=${q}`);
+  }
+  getEmployeesByDepartmentId(departmentId: string) {
+    return this.http.get<Array<EmployeeModel>>(`${this.url}/search/${departmentId}`);
   }
 
 }
