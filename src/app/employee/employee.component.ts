@@ -29,8 +29,8 @@ export class EmployeeComponent implements OnInit {
       data: 'contact',
     },
     {
-      caption: 'DepartmentId',
-      data: 'departmentId'
+      caption: 'Department',
+      data: 'departmentName'
     },
   ];
   constructor(
@@ -47,7 +47,6 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployees()
       .subscribe(result => {
         this.employees = result;
-        console.log(result);
       });
   }
 
@@ -55,17 +54,25 @@ export class EmployeeComponent implements OnInit {
     this.departmentService.getDepartments()
       .subscribe(result => {
         this.departments = result;
-        console.log(this.departments);
       });
   }
   getEmployeesBySearch() {
     this.employeeService.getEmployeesBySearch(this.search)
-      .subscribe( result =>  this.employees = result);
+      .subscribe( result =>  {
+        this.employees = result;
+    });
   }
-
   getEmployeesByDepartmentId() {
     this.employeeService.getEmployeesByDepartmentId(this.departmentId)
       .subscribe( result =>  this.employees = result);
   }
-
+  getDepartmentNames() {
+    this.departments.map( x => {
+      this.employees.map( y => {
+        if (x.Id === y.DepartmentId) {
+          y.DepartmentName = x.Name;
+        }
+      });
+    });
+  }
 }

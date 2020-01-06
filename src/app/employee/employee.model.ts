@@ -8,4 +8,5 @@ export class EmployeeModel {
     JoinDate: Date;
     ResignedDate?: Date;
     DepartmentId: string;
+    DepartmentName: string;
 }
