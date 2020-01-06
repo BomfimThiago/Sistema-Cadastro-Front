@@ -1,10 +1,16 @@
 .box{
-    margin: 50px auto;
-    padding:4em;
+    margin: 0px auto;
+    padding: 30px;
     display:flex;
     justify-content: space-between;
     flex-wrap: wrap;
     .card-img-top{
         height: 178px;
     }
+}
+.title{
+    align-items: center;
+    padding: 30px;
+    margin-top: 30px;
+    color: #007C89;
 }
