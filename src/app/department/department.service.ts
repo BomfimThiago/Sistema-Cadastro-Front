@@ -9,7 +9,11 @@ export class DepartmentService {
 url = `${environment.baseUrl}/department`
 
 constructor(private http: HttpClient) { }
-    getDepartments(){
-       return this.http.get<Array<DepartmentModel>>(this.url);
+    getDepartments() {
+       return this.http.get<Array<DepartmentModel>>(`${this.url}`);
+    }
+
+    getDepartmentById(id: string){
+        return this.http.get<DepartmentModel>(`${this.url}/${id}`);
     }
 }

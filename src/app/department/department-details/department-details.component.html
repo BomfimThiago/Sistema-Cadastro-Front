@@ -1,0 +1,28 @@
+<div class="title d-flex justify-content-between flex-wrap">
+  <h1><i class="fa fa-cogs mr-2"></i>{{departmentTitle}}</h1>
+  <div class="d-flex">
+    <a class="btn btn-secondary mr-2" (click)="location.back()"><i class="fa fa-close mr-1"></i>Cancel</a>
+    <a class="btn btn-primary" href="/"><i class="fa fa-save mr-1"></i>Save</a>
+  </div>
+</div>
+<div class="box">
+  <div style="flex: 1;margin-right: 20px;">
+    <form action="">
+      <div class="form-group">
+        <label for="imagem">Imagem de Capa</label>
+        <input type="text" class="form-control" [(ngModel)]="department.imagem"
+        name="imagem"  id="imagem" placeholder="imagem ">
+      </div>
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <input type="text" class="form-control" [(ngModel)]="department.name"
+        name="nome" id="nome" placeholder="nome ">
+      </div>
+      <div class="form-group">
+        <label for="descricao">Descrição</label>
+        <input type="text" class="form-control"  [(ngModel)]="department.description"
+        name="descricao" id="descricacao" placeholder="descrição ">
+      </div>
+    </form>
+  </div>
+</div>

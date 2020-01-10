@@ -13,8 +13,12 @@ export class EmployeeService {
   getEmployees() {
     return this.http.get<Array<EmployeeModel>>(this.url);
   }
-  getEmployeesBySearch(q: string) {
-    return this.http.get<Array<EmployeeModel>>(`${this.url}/search?q=${q}`);
+  getEmployeeById(id: string){
+    return this.http.get<EmployeeModel>(`${this.url}/${id}`);
+  }
+  getEmployeesBySearch(q: string, departmentId?: string) {
+    return this.http.get<Array<EmployeeModel>>
+    (`${this.url}/search?q=${q}&departmentId=${departmentId}`);
   }
   getEmployeesByDepartmentId(departmentId: string) {
     return this.http.get<Array<EmployeeModel>>(`${this.url}/search/${departmentId}`);

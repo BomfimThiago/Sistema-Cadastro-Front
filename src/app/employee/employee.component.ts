@@ -57,7 +57,7 @@ export class EmployeeComponent implements OnInit {
       });
   }
   getEmployeesBySearch() {
-    this.employeeService.getEmployeesBySearch(this.search)
+    this.employeeService.getEmployeesBySearch(this.search, this.departmentId)
       .subscribe( result =>  {
         this.employees = result;
     });
@@ -66,13 +66,16 @@ export class EmployeeComponent implements OnInit {
     this.employeeService.getEmployeesByDepartmentId(this.departmentId)
       .subscribe( result =>  this.employees = result);
   }
-  getDepartmentNames() {
-    this.departments.map( x => {
-      this.employees.map( y => {
-        if (x.Id === y.DepartmentId) {
-          y.DepartmentName = x.Name;
-        }
+
+  getEmployeeById(id: string): void {
+    this.employeeService.getEmployeeById(id)
+      .subscribe(result => {
+        console.log(result);
       });
-    });
+  }
+
+  edit(id) {
+    this.getEmployeeById(id);
+  
   }
 }

@@ -5,15 +5,18 @@ import { CommonModule } from '@angular/common';
 import { EmployeeService } from './employee.service';
 import { SharedModule } from '../shared/shared.module';
 import { FormsModule } from '@angular/forms';
+import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
-        SharedModule
+        SharedModule,
+        RouterModule
     ],
-    exports: [EmployeeComponent],
-    declarations: [EmployeeComponent],
+    exports: [EmployeeComponent, EmployeeDetailsComponent],
+    declarations: [EmployeeComponent, EmployeeDetailsComponent],
     providers: [EmployeeService],
 })
 export class EmployeeModule { }

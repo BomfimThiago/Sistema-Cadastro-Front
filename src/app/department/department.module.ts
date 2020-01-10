@@ -5,15 +5,18 @@ import { DepartmentService } from './department.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from '../shared/shared.module';
+import { DepartmentDetailsComponent } from './department-details/department-details.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     imports: [
         FormsModule,
         CommonModule,
-        SharedModule
+        SharedModule,
+        RouterModule
     ],
-    declarations: [DepartmentComponent],
-    exports: [DepartmentComponent],
+    declarations: [DepartmentComponent, DepartmentDetailsComponent],
+    exports: [DepartmentComponent, DepartmentDetailsComponent],
     providers: [DepartmentService],
 })
 export class DepartmentModule { }

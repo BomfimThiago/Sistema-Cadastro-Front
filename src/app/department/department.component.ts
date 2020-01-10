@@ -9,7 +9,7 @@ import { DepartmentService } from './department.service';
   styleUrls: ['./department.component.scss']
 })
 export class DepartmentComponent implements OnInit {
-
+  department: DepartmentModel;
   departments: DepartmentModel[];
   constructor(private departmentService: DepartmentService) { }
 
@@ -23,5 +23,7 @@ export class DepartmentComponent implements OnInit {
         this.departments = result;
       });
   }
+
+
 
 }
