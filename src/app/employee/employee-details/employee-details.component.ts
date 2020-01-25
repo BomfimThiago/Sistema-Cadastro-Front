@@ -114,6 +114,7 @@ export class EmployeeDetailsComponent implements OnInit {
       .pipe(finalize( () => this.blockUi.stop()))
       .subscribe( result => {
         this.alertService.success('Feedback', 'Employee successfully updated');
+        this.router.navigate(['employees']);
       }, error => {
         this.alertService.error('Feedback', 'Houve um erro inesperado.');
       });

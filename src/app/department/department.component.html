@@ -8,12 +8,16 @@
           <img [src]='depart.imagem' class="card-img-top" [alt]='depart.description'>
           <div class="card-body">
             <h5 class="card-title">{{depart.name}}</h5>
-            <p class="card-text">{{depart.description}}</p>
+            <div class="d-flex justify-content-between">
+              <p class="card-text">{{depart.description}}</p>
+              <div class="d-flex">
+               <i class="fa fa-edit" routerLink="{{depart.id}}" style="color: #007bff;"></i>
+               <i class="fa fa-trash ml-2" (click)="deleteDepartment(depart.id)" style="color: #dc3545;"></i>
+            </div>
+            </div>
+            
           </div>
-          <div class="card-footer d-flex">
-              <a routerLink="{{depart.id}}" class="btn btn-primary" ><i class="fa fa-edit"></i></a>
-              <button (click)="deleteDepartment(depart.id)" class="btn btn-outline-danger ml-1" ><i class="fa fa-trash"></i></button>
-          </div>
+         
         </div>
   </div> 
 </div>

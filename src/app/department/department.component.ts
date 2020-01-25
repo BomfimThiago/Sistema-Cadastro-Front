@@ -36,7 +36,7 @@ export class DepartmentComponent implements OnInit {
         .pipe(finalize(() => this.blockUi.stop()))
         .subscribe(result => {
           this.alertService.success('Feedback', 'Department successfully deleted');
-          this.router.navigate(['/departments']);
+          this.carregarTela();
         }, error => this.alertService.success('Feedback', 'There was an unexpected error')
       );
     });

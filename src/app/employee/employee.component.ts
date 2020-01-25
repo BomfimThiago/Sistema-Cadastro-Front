@@ -63,6 +63,7 @@ export class EmployeeComponent implements OnInit {
         this.employeeService.deleteEmployee(id)
         .subscribe(result => {
           this.alertService.success('Feedback', 'Employee successfully deleted');
+          this.carregarTela();
         }, error => console.log(error)
       );
     });
