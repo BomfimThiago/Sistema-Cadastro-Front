@@ -1,9 +1,16 @@
-a {
-  color: white !important;
-}
-.box {
+.box-details {
   display: flex;
   justify-content: space-between;
   max-width: 800px;
   margin: 0 auto;
 }
+.box-details__a{
+  color: white !important;
+}
+.box-details__warning{
+  color:red;
+}
+.box-details__warning > input{
+  border:1px solid red;
+}
+

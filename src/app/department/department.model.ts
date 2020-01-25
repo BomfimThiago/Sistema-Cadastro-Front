@@ -1,5 +1,6 @@
 export class DepartmentModel {
-    Id:string;
-    Name : string;
-    Description:string;
+    Id: string;
+    Name: string;
+    Description: string;
+    Imagem: string;
 }

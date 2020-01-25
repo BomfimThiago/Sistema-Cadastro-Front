@@ -4,7 +4,7 @@ import { EmployeeComponent } from './employee.component';
 import { CommonModule } from '@angular/common';
 import { EmployeeService } from './employee.service';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeDetailsComponent } from './employee-details/employee-details.component';
 import { RouterModule } from '@angular/router';
 
@@ -13,7 +13,8 @@ import { RouterModule } from '@angular/router';
         CommonModule,
         FormsModule,
         SharedModule,
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule
     ],
     exports: [EmployeeComponent, EmployeeDetailsComponent],
     declarations: [EmployeeComponent, EmployeeDetailsComponent],

@@ -1,67 +1,71 @@
-<div class="title d-flex justify-content-between">
-  <h1><i class="fa fa-group mr-2"></i>Employees</h1>
-  <a routerLink="new" class="btn btn-primary"><i class="fa fa-user-plus mr-1"></i>New</a>
-</div>
-<div class="box">
-  
-  <div class="filter">
-    <h2><i class="fa fa-filter"></i> Filter</h2>
-    <form>
-      <div class="row">
-        <div class="col-lg-8">
-          <div class="form-group">
-            
-            <input-text
-              [placeholder]="'search by name...'" 
-              name="inpute"
-              [maxlength]="200"
-              [disabled]="false"
-              [showValidations]="true"
-              [(ngModel)]="search"
-              >
-            </input-text>
-            
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="form-group">
-            <input-dropdown-search
-            name ="searchByDepartment"
-            displayTextProperty="name"
-            valueProperty="id"
-            placeholder="department..."
-            searchPlaceholder="department"
-            [(ngModel)]="departmentId"
-            [data]="departments"        
-            [showValidations]="true"
-            >
-          </input-dropdown-search>
-          </div>
-        </div>
-        <div class="col-lg-2">
-          <div class="form-group">
-            <button type="button" class="btn btn-primary" 
-            (click)="getEmployeesBySearch()"><i class="fa fa-search"></i> Search</button>
-          </div>
-        </div>
-      </div>
-    </form>
+<div [block-ui]="blockUi">
+  <div class="title d-flex justify-content-between">
+    <h1><i class="fa fa-group mr-2"></i>Employees</h1>
+    <a routerLink="new" class="btn btn-primary"><i class="fa fa-user-plus mr-1"></i>New</a>
+  </div>
+  <div class="box">
     
-  </div>
-  <div>
-    <datagrid 
-    [data]="employees" 
-    [columns]="columns" 
-    [showActionsColumn]="true"
-    [initialColumnToSort]="0">
-  
-    <ng-template actions-column let-row="row" let-rowIndex="rowIndex">
-      <button routerLink=":id" class="btn btn-primary btn-sm mr-1" (click)="edit(row.id)"><i class="fa fa-edit"></i></button>
-      <button class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
-    </ng-template>
-  </datagrid>
+    <div class="filter">
+      <h2><i class="fa fa-filter"></i> Filter</h2>
+      <form>
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="form-group">
+              
+              <input-text
+                [placeholder]="'search by name...'" 
+                name="inpute"
+                [maxlength]="200"
+                [disabled]="false"
+                [showValidations]="true"
+                [(ngModel)]="search"
+                >
+              </input-text>
+              
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="form-group">
+              <input-dropdown-search
+              name ="searchByDepartment"
+              displayTextProperty="name"
+              valueProperty="id"
+              placeholder="department..."
+              searchPlaceholder="department"
+              [(ngModel)]="departmentId"
+              [data]="departments"        
+              [showValidations]="true"
+              >
+            </input-dropdown-search>
+            </div>
+          </div>
+          <div class="col-lg-2">
+            <div class="form-group">
+              <button type="button" class="btn btn-primary" 
+              (click)="getEmployeesBySearch()"><i class="fa fa-search"></i> Search</button>
+            </div>
+          </div>
+        </div>
+      </form>
+      
+    </div>
+    <div>
+      <datagrid 
+      [data]="employees" 
+      [columns]="columns" 
+      [showActionsColumn]="true"
+      [initialColumnToSort]="0">
+    
+      <ng-template actions-column let-row="row" let-rowIndex="rowIndex">
+        <button [routerLink]="row.id" class="btn btn-primary btn-sm mr-1"
+        ><i class="fa fa-edit"></i></button>
+        <button (click)=delete(row.id) class="btn btn-outline-danger btn-sm"><i class="fa fa-trash"></i></button>
+      </ng-template>
+    </datagrid>
+    </div>
   </div>
 </div>
+
 
 
 

@@ -1,28 +1,43 @@
-<div class="title d-flex justify-content-between flex-wrap">
-  <h1><i class="fa fa-cogs mr-2"></i>{{departmentTitle}}</h1>
-  <div class="d-flex">
-    <a class="btn btn-secondary mr-2" (click)="location.back()"><i class="fa fa-close mr-1"></i>Cancel</a>
-    <a class="btn btn-primary" href="/"><i class="fa fa-save mr-1"></i>Save</a>
+<div [block-ui]="blockUi">
+  <div class="title d-flex justify-content-between flex-wrap">
+    <h1><i class="fa fa-cogs mr-2"></i>{{departmentTitle}}</h1>
+  </div>
+  <div class="box-details">
+    <div style="flex: 1;margin-right: 20px;">
+      <form #formDepartment="ngForm" (ngSubmit)="onSubmit(formDepartment)" novalidate>
+        <div class="form-group" [ngClass]="{
+          'box-details__warning': !imagem.valid && imagem.touched}">
+            <label for="imagem" class="control-label">Image</label>
+            <input type="text" class="form-control" [(ngModel)]="department.imagem"
+            name="imagem"  id="imagem" placeholder="image " required #imagem="ngModel">  
+          <div class="alert alert-danger" *ngIf="!imagem.valid && imagem.touched">
+            Image is required
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{
+          'box-details__warning': !name.valid && name.touched}">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" [(ngModel)]="department.name"
+          name="name" id="name" placeholder="name " required  #name="ngModel">
+          <div class="alert alert-danger" *ngIf="!name.valid && name.touched">
+            Name is required
+          </div>
+        </div>
+        <div class="form-group" [ngClass]="{
+          'box-details__warning': !description.valid && description.touched}">
+          <label for="description">Description</label>
+          <input type="text" class="form-control"  [(ngModel)]="department.description"
+          name="description" id="description" placeholder="description " required  #description="ngModel">
+          <div class="alert alert-danger" *ngIf="!description.valid && description.touched">
+            Description is required
+          </div>
+        </div>
+        <div class="d-flex">
+          <a class="box-details__a btn btn-secondary mr-2" (click)="location.back()"><i class="fa fa-close mr-1"></i>Cancel</a>
+          <button type="submit" class="btn btn-primary" [disabled]="!formDepartment.valid"><i class="fa fa-save mr-1"></i>Save</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<div class="box">
-  <div style="flex: 1;margin-right: 20px;">
-    <form action="">
-      <div class="form-group">
-        <label for="imagem">Imagem de Capa</label>
-        <input type="text" class="form-control" [(ngModel)]="department.imagem"
-        name="imagem"  id="imagem" placeholder="imagem ">
-      </div>
-      <div class="form-group">
-        <label for="nome">Nome</label>
-        <input type="text" class="form-control" [(ngModel)]="department.name"
-        name="nome" id="nome" placeholder="nome ">
-      </div>
-      <div class="form-group">
-        <label for="descricao">Descrição</label>
-        <input type="text" class="form-control"  [(ngModel)]="department.description"
-        name="descricao" id="descricacao" placeholder="descrição ">
-      </div>
-    </form>
-  </div>
-</div>
+
