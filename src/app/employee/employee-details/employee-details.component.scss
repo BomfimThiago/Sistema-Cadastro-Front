@@ -1,6 +1,12 @@
 a{
     color: white !important;
 }
+.box-details {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  margin: 0 auto;
+}
 
 .box-details__warning{
     color:red;

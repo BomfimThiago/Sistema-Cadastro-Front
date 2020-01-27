@@ -46,8 +46,8 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.employee.Id = this.route.snapshot.params.id;
-    this.editing = this.employee.Id !== undefined && this.employee.Id != null && this.employee.Id !== '';
+    this.employee.id = this.route.snapshot.params.id;
+    this.editing = this.employee.id !== undefined && this.employee.id != null && this.employee.id !== '';
     this.employeeTitle = this.editing ? 'EmployeeDetail' : 'EmployeeNew';
 
     this.carregarTela();
@@ -57,12 +57,11 @@ export class EmployeeDetailsComponent implements OnInit {
   getEmployeeById(): Promise<void> {
     const promise = new Promise<void>( (resolve, reject) => {
         if (this.editing) {
-          this.employeeService.getEmployeeById(this.employee.Id)
+          this.employeeService.getEmployeeById(this.employee.id)
           .subscribe(result => {
             this.form.setValue(result);
-            console.log(this.form);
             resolve();
-          }, error => console.log(error));
+          }, error =>  this.alertService.error('Feedback', 'Houve um erro inesperado.'));
         } else {
           resolve();
         }
@@ -110,7 +109,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.blockUi.start('Atualizando...');
     this.employee = this.form.value;
 
-    this.employeeService.updateEmployee(this.employee.Id, this.employee)
+    this.employeeService.updateEmployee(this.employee.id, this.employee)
       .pipe(finalize( () => this.blockUi.stop()))
       .subscribe( result => {
         this.alertService.success('Feedback', 'Employee successfully updated');

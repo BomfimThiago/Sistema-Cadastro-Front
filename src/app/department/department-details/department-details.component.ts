@@ -30,8 +30,8 @@ export class DepartmentDetailsComponent implements OnInit {
    }
 
   ngOnInit() {
-    this.department.Id = this.route.snapshot.params.id;
-    this.editing = this.department.Id !== undefined && this.department.Id !== null && this.department.Id !== '';
+    this.department.id = this.route.snapshot.params.id;
+    this.editing = this.department.id !== undefined && this.department.id !== null && this.department.id !== '';
     this.departmentTitle = this.editing ? 'DepartmentDetails' : 'DepartmentNew';
 
     this.carregarTela();
@@ -62,7 +62,7 @@ export class DepartmentDetailsComponent implements OnInit {
   private getDepartmentById(): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
       if (this.editing) {
-        this.departmentService.getDepartmentById(this.department.Id)
+        this.departmentService.getDepartmentById(this.department.id)
         .subscribe(result => {
           this.department = result;
           resolve();
@@ -87,7 +87,7 @@ export class DepartmentDetailsComponent implements OnInit {
   private updateDepartment(): void {
     this.blockUi.start('Updating...');
 
-    this.departmentService.updateDepartment(this.department.Id, this.department)
+    this.departmentService.updateDepartment(this.department.id, this.department)
       .pipe(finalize(() => this.blockUi.stop()))
       .subscribe(result => {
         this.alertService.success('Feedback', 'Department successfully updated');
