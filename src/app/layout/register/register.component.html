@@ -1,0 +1,30 @@
+<div class="register">
+    <h1>Registration System</h1>
+    <p>A system built with .Net and Angular</p>
+    <button class="btn btn-primary" *ngIf="!userWantsToRegister" (click)="toRegister()">Register Now</button>
+
+    <form #registerForm="ngForm" novalidate *ngIf="userWantsToRegister" (ngSubmit)="sendRegister()">
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                  <label class="control-label" for="username">Name</label>
+                  <input class="form-control" name="username" type="text" required [(ngModel)]="user.username">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                  <label class="control-label" for="password">Password</label>
+                  <input class="form-control" name="password" type="password" required [(ngModel)]="user.password">
+                </div>
+            </div>
+        </div>
+        <div>
+            <button [disabled]="!registerForm.valid" class="btn btn-primary" type="submit">Send Register</button>
+            <button class="btn  btn-secondary ml-2" (click)="toRegister()">Cancel</button>
+        </div>
+    </form>
+</div>
+ 
+  

@@ -1,9 +1,12 @@
 .box-department{
     margin: 0px auto;
     padding: 30px;
+    margin-right: 5px;
     display:flex;
-    justify-content: space-between;
     flex-wrap: wrap;
+    .card{
+        margin: 0px 10px ;
+    }
     .card-img-top{
         height: 178px;
     }

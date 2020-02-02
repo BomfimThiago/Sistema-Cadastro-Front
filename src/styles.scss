@@ -10,14 +10,28 @@ html,body{
 i,a,button:hover{
     cursor: pointer;
 }
-
-.box{
+a{
+    text-decoration: none;
+    color: white;
+    &:hover{
+        color: white;
+    }
+}
+.main-container{
+    max-width: 1080px;
+    margin: 10px auto;
     padding: 30px;
 }
-
-.title{
-    align-items: center;
-    padding: 30px;
-    margin-top: 30px;
-    color: #007C89;
+.portlet{
+    background: white;
+    box-shadow: -1px 2px 7px -5px;
+    padding: 15px;
+    .portlet-title {
+        color: white;
+        background: #007c89;
+        padding: 15px;
+        margin: 0p;
+        margin: -20px -15px 20px -15px;
+    }
 }
+

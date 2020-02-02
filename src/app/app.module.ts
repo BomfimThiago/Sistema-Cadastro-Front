@@ -12,13 +12,16 @@ import { EmployeeModule } from './employee/employee.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { AuthService } from './service/auth.service';
+import { RegisterComponent } from './layout/register/register.component';
 
 
 @NgModule({
    declarations: [
       AppComponent,
       HeaderComponent,
-      HomeComponent
+      HomeComponent,
+      RegisterComponent
    ],
    imports: [
       BrowserModule,
@@ -31,7 +34,9 @@ import { RouterModule } from '@angular/router';
       HttpClientModule,
       RouterModule
    ],
-   providers: [],
+   providers: [
+      AuthService
+   ],
    bootstrap: [
       AppComponent
    ]

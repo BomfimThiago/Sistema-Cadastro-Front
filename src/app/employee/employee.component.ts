@@ -15,7 +15,7 @@ export class EmployeeComponent implements OnInit {
   blockUi = new BlockUi();
   department: DepartmentModel;
   departmentId: string;
-  search: string;
+  search: string ;
   employees: EmployeeModel[];
   departments: DepartmentModel[];
   columns: Array<DataGridColumnModel> = [
@@ -25,6 +25,7 @@ export class EmployeeComponent implements OnInit {
     },
     {
       caption: 'E-mail',
+      width: '200px',
       data: 'email'
     },
     {
@@ -59,7 +60,11 @@ export class EmployeeComponent implements OnInit {
             });
           });
           resolve();
-      });
+      }, error => {
+        this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+        reject();
+      }
+      );
     });
     return promise;
   }
@@ -69,12 +74,15 @@ export class EmployeeComponent implements OnInit {
         .subscribe(result => {
           this.alertService.success('Feedback', 'Employee successfully deleted');
           this.carregarTela();
-        }, error => console.log(error)
+        }, error => {
+          this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+        }
       );
     });
   }
 
   private carregarTela(): void {
+    this.search = '';
     this.blockUi.start('Loading...');
 
     Promise.all([
@@ -82,19 +90,8 @@ export class EmployeeComponent implements OnInit {
       this.getEmployeesBySearch()
     ])
     .then(() => this.blockUi.stop())
-    .catch(error => this.alertService.error('feedback', 'There was an unexpected error'));
+    .catch(error => this.alertService.error('Feedback', `${error.error[0].errorMessage}`));
   }
-
-  // private getEmployees(): Promise<void> {
-  //   const promise = new Promise<void>((resolve, reject) => {
-  //     this.employeeService.getEmployees()
-  //     .subscribe(result => {
-  //       this.employees = result;
-  //       resolve();
-  //     }, error => console.log(error));
-  //   });
-  //   return promise;
-  // }
 
   private getAllDepartments(): Promise<void> {
     const promise = new Promise<void>((resolve, reject) => {
@@ -102,7 +99,10 @@ export class EmployeeComponent implements OnInit {
       .subscribe(result => {
         this.departments = result;
         resolve();
-      }, error => this.alertService.error('feedback', 'There was an unexpected error'));
+      }, error => {
+        this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+        reject();
+      });
     });
     return promise;
   }

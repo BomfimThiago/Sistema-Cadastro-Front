@@ -43,7 +43,7 @@ export class DepartmentDetailsComponent implements OnInit {
       this.router.navigate([`departments`]);
     } else {
       this.createDeparment();
-      form.reset();
+      // form.reset();
     }
   }
 
@@ -55,7 +55,8 @@ export class DepartmentDetailsComponent implements OnInit {
     ])
     .then(() => this.blockUi.stop())
     .catch(error => {
-      this.alertService.error('Feedback', 'There was an unexpected error!');
+      this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+      this.blockUi.stop();
     });
   }
 
@@ -81,7 +82,7 @@ export class DepartmentDetailsComponent implements OnInit {
       .subscribe(result => {
           this.alertService.success('Feedback', 'Department successfully created');
         }, error => {
-          this.alertService.error('Feedback', 'There was an unexpected error.');
+          this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
         });
   }
   private updateDepartment(): void {
@@ -92,7 +93,7 @@ export class DepartmentDetailsComponent implements OnInit {
       .subscribe(result => {
         this.alertService.success('Feedback', 'Department successfully updated');
       }, error => {
-        this.alertService.error('Feedback', 'There was an unexpected error.');
+        this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
       });
   }
 }

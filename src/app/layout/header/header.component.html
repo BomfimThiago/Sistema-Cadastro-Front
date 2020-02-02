@@ -1,18 +1,31 @@
-<nav class="navbar navbar-expand-lg ">
+<nav class="navbar navbar-expand-lg d-flex justify-content-between">
+  <div class="d-flex flex-wrap">
     <a class="navbar-brand" >Registration System</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div *ngIf="userLoggedIn"> 
       <div class="navbar-nav">
         <a class="nav-item nav-link active" routerLink="home">Home <span class="sr-only">(current)</span></a>
         <a class="nav-item nav-link" routerLink="departments">Departments</a>
         <a class="nav-item nav-link" routerLink="employees">Employees</a>
       </div>
     </div>
-    <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
-    </form>
-
-  </nav>
+  </div>  
+  <form class="form-inline" *ngIf="userLoggedIn">
+    <span class="mr-2">Welcome {{user.username}} </span>
+    <button class="loginButton  btn my-2 my-sm-0" (click)="logout()"><i class="fa fa-sign-out mr-2"></i>Logout</button>
+  </form>
+  <form #loginForm="ngForm" novalidate class="form-inline" *ngIf="!userLoggedIn">
+    <input class="form-control mr-sm-2" 
+           type="text"
+           placeholder="username"
+           name="username"
+           [(ngModel)]="user.username"
+           required>
+    <input class="form-control mr-sm-2" 
+          type="password" 
+          name="password"
+          placeholder="password" 
+          [(ngModel)]="user.password"
+          required>
+    <button [disabled]="!loginForm.valid" class="loginButton btn my-2 my-sm-0" (click)="login()" ><i class="fa fa-sign-in mr-2"></i>Login</button>
+  </form>
+</nav>

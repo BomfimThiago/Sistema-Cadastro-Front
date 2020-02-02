@@ -1,16 +1,16 @@
-<div [block-ui]="blockUi">
-  <div class="title d-flex justify-content-between flex-wrap">
-    <h1><i class="fa fa-cogs mr-2"></i>{{departmentTitle}}</h1>
+<div class="portlet" [block-ui]="blockUi">
+  <div class="portlet-title d-flex justify-content-between flex-wrap">
+    <h3><i class="fa fa-cogs mr-2"></i>{{departmentTitle}}</h3>
   </div>
   <div class="box-details">
     <div style="flex: 1;margin-right: 20px;">
       <form #formDepartment="ngForm" (ngSubmit)="onSubmit(formDepartment)" novalidate>
         <div class="form-group" [ngClass]="{
-          'box-details__warning': !imagem.valid && imagem.touched}">
-            <label for="imagem" class="control-label">Image</label>
-            <input type="text" class="form-control" [(ngModel)]="department.imagem"
-            name="imagem"  id="imagem" placeholder="image " required #imagem="ngModel">  
-          <div class="alert alert-danger" *ngIf="!imagem.valid && imagem.touched">
+          'box-details__warning': !image.valid && image.touched}">
+            <label for="image" class="control-label">Image</label>
+            <input type="text" class="form-control" [(ngModel)]="department.image"
+            name="image"  id="image" placeholder="image "  #image="ngModel">  
+          <div class="alert alert-danger" *ngIf="!image.valid && image.touched">
             Image is required
           </div>
         </div>

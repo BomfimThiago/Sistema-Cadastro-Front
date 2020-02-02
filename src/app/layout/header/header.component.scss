@@ -1,5 +1,5 @@
 .navbar {
-    background:#007C89;
+    background:#007c89;
     color:white;
     a{
         color:white;
@@ -18,10 +18,13 @@
     }
     button[type=submit]:hover{
         border:1px solid gold;
-        
     }
-  
-   
+    .loginButton{
+        color:white;
+        i{
+            color:white;
+        }
+    }
 }
 
 

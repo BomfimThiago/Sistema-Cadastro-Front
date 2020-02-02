@@ -61,7 +61,10 @@ export class EmployeeDetailsComponent implements OnInit {
           .subscribe(result => {
             this.form.setValue(result);
             resolve();
-          }, error =>  this.alertService.error('Feedback', 'Houve um erro inesperado.'));
+          }, error => {
+            this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+            reject();
+          });
         } else {
           resolve();
         }
@@ -75,7 +78,7 @@ export class EmployeeDetailsComponent implements OnInit {
      this.updateEmployee();
     } else {
       this.createEmployee();
-      this.form.reset();
+      // this.form.reset();
     }
   }
 
@@ -87,7 +90,7 @@ export class EmployeeDetailsComponent implements OnInit {
     ])
     .then(() => this.blockUi.stop())
     .catch(error => {
-      this.alertService.error('Feedback', 'Houve um erro inesperado.');
+      this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
       this.blockUi.stop();
     });
   }
@@ -101,7 +104,7 @@ export class EmployeeDetailsComponent implements OnInit {
       .subscribe( result => {
         this.alertService.success('Feedback', 'Employee successfully created');
       }, error => {
-        this.alertService.error('Feedback', 'Houve um erro inesperado.');
+        this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
       });
   }
 
@@ -115,7 +118,7 @@ export class EmployeeDetailsComponent implements OnInit {
         this.alertService.success('Feedback', 'Employee successfully updated');
         this.router.navigate(['employees']);
       }, error => {
-        this.alertService.error('Feedback', 'Houve um erro inesperado.');
+        this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
       });
   }
 }

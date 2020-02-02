@@ -2,15 +2,12 @@ a{
     color: white !important;
 }
 .box-details {
-  display: flex;
-  justify-content: space-between;
-  max-width: 800px;
-  margin: 0 auto;
+  padding: 30px;
+  padding-top: 0px;
 }
-
 .box-details__warning{
     color:red;
-  }
-  .box-details__warning > input{
+}
+.box-details__warning > input{
     border:1px solid red;
-  }
+}

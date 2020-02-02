@@ -1,11 +1,11 @@
-<div [block-ui]="blockUi">
-  <div class="title d-flex justify-content-between">
-    <h1><i class="fa fa-cogs mr-2"></i>{{employeeTitle}}</h1>
+<div class="portlet" [block-ui]="blockUi">
+  <div class="portlet-title d-flex justify-content-between">
+    <h3><i class="fa fa-cogs mr-2"></i>{{employeeTitle}}</h3>
   </div>
   <div class="box-details ">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="row">
-        <div class="col-lg-4">
+        <!-- <div class="col-lg-4">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['id'].valid && form.controls['id'].touched}">
             <label for="nome" class="control-label">Id</label>
@@ -15,8 +15,8 @@
               Id is required
             </div>
           </div>
-        </div>
-        <div class="col-lg-8">
+        </div> -->
+        <div class="col-lg-12">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['name'].valid && form.controls['name'].touched}">
             <label for="nome" class="control-label">Name</label>
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
           <div class="form-group"  [ngClass]="{
             'box-details__warning': !form.controls['email'].valid && form.controls['email'].touched}">
             <label for="email" class="control-label">Email</label>
@@ -40,7 +40,32 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-6">
+        <!-- <div class="col-lg-6">
+          <div class="form-group" [ngClass]="{
+            'box-details__warning': !form.controls['contact'].valid && form.controls['name'].touched}">
+            <label for="contact" class="control-label">Contact</label>
+            <input class="form-control" type="text" formControlName="contact" placeholder="contact" >
+  
+            <div class="alert alert-danger" *ngIf="!form.controls['contact'].valid && form.controls['contact'].touched">
+              Contact is required
+            </div>
+          </div>
+        </div> -->
+     
+      </div>
+      <div class="row">
+        <!-- <div class="col-lg-6">
+          <div class="form-group"  [ngClass]="{
+            'box-details__warning': !form.controls['email'].valid && form.controls['email'].touched}">
+            <label for="email" class="control-label">Email</label>
+            <input class="form-control" type="email" formControlName="email" placeholder="name@example.com">
+  
+            <div class="alert alert-danger" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+              Email is required/invalid
+            </div>
+          </div>
+        </div> -->
+        <div class="col-lg-12">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['contact'].valid && form.controls['name'].touched}">
             <label for="contact" class="control-label">Contact</label>
@@ -54,7 +79,7 @@
      
       </div>
       <div class="row">
-        <div class="col-lg-2">
+        <!-- <div class="col-lg-2">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['age'].valid && form.controls['age'].touched}">
             <label for="age" class="control-label">Age</label>
@@ -64,8 +89,8 @@
               Age is required/invalid
             </div>
           </div>
-        </div>
-        <div class="col-lg-5">
+        </div> -->
+        <div class="col-lg-12">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['cpf'].valid && form.controls['cpf'].touched}">
             <label for="cpf" class="control-label">Cpf</label>
@@ -76,7 +101,42 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        <!-- <div class="col-lg-5">
+          <div class="form-group" [ngClass]="{
+            'box-details__warning': !form.controls['departmentId'].valid && form.controls['departmentId'].touched}">
+            <label for="departmentId" class="control-label">Department</label>
+            <input class="form-control" type="text" formControlName="departmentId" placeholder="department" >
+  
+            <div class="alert alert-danger" *ngIf="!form.controls['departmentId'].valid && form.controls['departmentId'].touched">
+              Department is required
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="form-group" [ngClass]="{
+            'box-details__warning': !form.controls['age'].valid && form.controls['age'].touched}">
+            <label for="age" class="control-label">Age</label>
+            <input class="form-control" type="number" formControlName="age" placeholder="age" >
+  
+            <div class="alert alert-danger" *ngIf="!form.controls['age'].valid && form.controls['age'].touched">
+              Age is required/invalid
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-5">
+          <div class="form-group" [ngClass]="{
+            'box-details__warning': !form.controls['cpf'].valid && form.controls['cpf'].touched}">
+            <label for="cpf" class="control-label">Cpf</label>
+            <input class="form-control" type="text" formControlName="cpf" placeholder="cpf" >
+  
+            <div class="alert alert-danger" *ngIf="!form.controls['cpf'].valid && form.controls['cpf'].touched">
+              Cpf is required/invalid
+            </div>
+          </div>
+        </div> -->
+        <div class="col-lg-8">
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['departmentId'].valid && form.controls['departmentId'].touched}">
             <label for="departmentId" class="control-label">Department</label>
