@@ -51,9 +51,8 @@ export class EmployeeComponent implements OnInit {
     const promise = new Promise<void>((resolve, reject) => {
        this.employeeService.getEmployeesBySearch(this.search, this.departmentId)
         .subscribe( result =>  {
-          console.log(result);
           this.employees = result;
-          if(this.employees.length > 0) {
+          if (this.employees.length > 0) {
             this.employees.map(x => {
               this.departments.map(y => {
                 if (x.departmentId === y.id) {

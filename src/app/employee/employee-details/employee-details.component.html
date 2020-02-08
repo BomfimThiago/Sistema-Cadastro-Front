@@ -12,7 +12,7 @@
             <input class="form-control" type="text" formControlName="name" placeholder="name...">
 
             <div class="alert alert-danger" *ngIf="!form.controls['name'].valid && form.controls['name'].touched">
-              Name is required
+              Name is invalid
             </div>
           </div>
         </div>
@@ -25,7 +25,7 @@
             <input class="form-control" type="email" formControlName="email" placeholder="name@example.com">
 
             <div class="alert alert-danger" *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
-              Email is required/invalid
+              Email is invalid
             </div>
           </div>
         </div>
@@ -33,13 +33,12 @@
       <div class="row">
         <div class="col-lg-12">
           <div class="form-group" [ngClass]="{
-            'box-details__warning': !form.controls['contact'].valid && form.controls['name'].touched}">
+            'box-details__warning': !form.controls['contact'].valid && form.controls['contact'].touched}">
             <label for="contact" class="control-label">Contact</label>
             <input class="form-control" type="text" formControlName="contact" placeholder="contact">
 
             <div class="alert alert-danger" *ngIf="!form.controls['contact'].valid && form.controls['contact'].touched">
-              Contact is required
-            </div>
+              Contact is Invalida</div>
           </div>
         </div>
 
@@ -51,7 +50,7 @@
             <label for="cpf" class="control-label">Cpf</label>
             <input class="form-control" type="text" formControlName="cpf" placeholder="cpf">
             <div class="alert alert-danger" *ngIf="!form.controls['cpf'].valid && form.controls['cpf'].touched">
-              Cpf is required/invalid
+              Cpf is invalid
             </div>
           </div>
         </div>
@@ -64,7 +63,7 @@
             <input class="form-control" type="number" formControlName="age" placeholder="age">
 
             <div class="alert alert-danger" *ngIf="!form.controls['age'].valid && form.controls['age'].touched">
-              Age is required/invalid
+              Age is invalid
             </div>
           </div>
         </div>
@@ -72,12 +71,18 @@
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['departmentId'].valid && form.controls['departmentId'].touched}">
             <label for="departmentId" class="control-label">Department</label>
-            <input class="form-control" type="text" formControlName="departmentId" placeholder="department">
+            <input-dropdown-search
+              displayTextProperty="name"
+              valueProperty="id"
+              formControlName="departmentId" 
+              [disabled]="false"
+              [data]="departments"        
+            >
+            </input-dropdown-search>
 
             <div class="alert alert-danger"
               *ngIf="!form.controls['departmentId'].valid && form.controls['departmentId'].touched">
-              Department is required
-            </div>
+              Department is invalid            </div>
           </div>
         </div>
       </div>
@@ -86,11 +91,15 @@
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['joinDate'].valid && form.controls['joinDate'].touched}">
             <label for="joinDate" class="control-label">JoinDate</label>
-            <input class="form-control" type="text" formControlName="joinDate" placeholder="joinDate">
+            <input-date 
+              formControlName="joinDate" 
+              placeholder="joinDate"
+              >
+            </input-date>
 
             <div class="alert alert-danger"
               *ngIf="!form.controls['joinDate'].valid && form.controls['joinDate'].touched">
-              JoinDate is required/invalid
+              JoinDate is invalid
             </div>
           </div>
         </div>
@@ -98,11 +107,15 @@
           <div class="form-group" [ngClass]="{
             'box-details__warning': !form.controls['resignedDate'].valid && form.controls['resignedDate'].touched}">
             <label for="resignedDate" class="control-label">ResignedDate</label>
-            <input class="form-control" type="text" formControlName="resignedDate" placeholder="resignedDate">
+            <input-date 
+              formControlName="resignedDate" 
+              placeholder="resignedDate"
+            >
+            </input-date>
 
             <div class="alert alert-danger"
               *ngIf="!form.controls['resignedDate'].valid && form.controls['resignedDate'].touched">
-              ResignedDate is required/invalid
+              ResignedDate is invalid
             </div>
           </div>
         </div>

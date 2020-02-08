@@ -8,6 +8,8 @@ import { EmployeeService } from '../employee.service';
 import { BlockUi } from 'ngx-ui-hero';
 import { finalize } from 'rxjs/operators';
 import { EmployeeCadastroModel } from '../employee.cadastro.model';
+import { DepartmentService } from 'src/app/department/department.service';
+import { DepartmentModel } from 'src/app/department/department.model';
 
 @Component({
   selector: 'app-employee-details',
@@ -19,6 +21,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   employee: EmployeeModel;
   employeeCadastro: EmployeeCadastroModel;
+  departments: Array<DepartmentModel>;
   editing: boolean;
   employeeTitle: string;
   form: FormGroup;
@@ -29,7 +32,8 @@ export class EmployeeDetailsComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private alertService: AlertService,
-    private employeeService: EmployeeService
+    private employeeService: EmployeeService,
+    private departmentService: DepartmentService
   ) {
     this.employee = new EmployeeModel();
 
@@ -41,8 +45,7 @@ export class EmployeeDetailsComponent implements OnInit {
       age: [null, Validators.required],
       joinDate: [null, Validators.required],
       resignedDate: [null],
-      departmentId: [null, Validators.required],
-      // department: [null],
+      departmentId: [null, Validators.required]
     });
   }
 
@@ -87,6 +90,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this.blockUi.start('Carregando...');
 
     Promise.all([
+      this.getAllDepartments(),
       this.getEmployeeById()
     ])
     .then(() => this.blockUi.stop())
@@ -97,11 +101,6 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   private createEmployee(): void {
-    
-    this.employeeCadastro = this.form.value
-    console.log(this.employeeCadastro);
-    console.log(this.form.value);
-    this.employeeCadastro = this.form.value;
     this.blockUi.start('Criando...');
 
     this.employeeService.createEmployee(this.form.value)
@@ -124,6 +123,13 @@ export class EmployeeDetailsComponent implements OnInit {
         this.router.navigate(['employees']);
       }, error => {
         this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+      });
+  }
+
+  private getAllDepartments(): void {
+    this.departmentService.getDepartments()
+      .subscribe(result => {
+        this.departments = result;
       });
   }
 }
