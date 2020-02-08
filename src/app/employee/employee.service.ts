@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EmployeeModel } from './employee.model';
 import { Observable } from 'rxjs';
+import { EmployeeCadastroModel } from './employee.cadastro.model';
 
 @Injectable()
 export class EmployeeService {
@@ -17,7 +18,7 @@ export class EmployeeService {
   getEmployeeById(id: string): Observable<EmployeeModel> {
     return this.http.get<EmployeeModel>(`${this.url}/${id}`);
   }
-  createEmployee(employee: EmployeeModel): Observable<void> {
+  createEmployee(employee: EmployeeCadastroModel): Observable<void> {
     return this.http.post<void>(`${this.url}`, employee);
   }
   updateEmployee(id: string, employee: EmployeeModel): Observable<void> {

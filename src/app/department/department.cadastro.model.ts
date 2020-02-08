@@ -1,5 +1,4 @@
-export class DepartmentModel {
-    id: string;
+export class DepartmentCadastroModel {
     name: string;
     description: string;
     image: string;

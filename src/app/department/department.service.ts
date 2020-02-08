@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { DepartmentModel } from './department.model';
 import { Observable } from 'rxjs';
+import { DepartmentCadastroModel } from './department.cadastro.model';
 
 @Injectable()
 export class DepartmentService {
@@ -16,7 +17,7 @@ constructor(private http: HttpClient) { }
     getDepartmentById(id: string): Observable<DepartmentModel> {
         return this.http.get<DepartmentModel>(`${this.url}/${id}`);
     }
-    createDepartment(department: DepartmentModel): Observable<void> {
+    createDepartment(department: DepartmentCadastroModel): Observable<void> {
         return this.http.post<void>(`${this.url}`, department);
     }
     updateDepartment(id: string, department: DepartmentModel): Observable<void> {

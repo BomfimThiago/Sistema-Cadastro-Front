@@ -51,14 +51,17 @@ export class EmployeeComponent implements OnInit {
     const promise = new Promise<void>((resolve, reject) => {
        this.employeeService.getEmployeesBySearch(this.search, this.departmentId)
         .subscribe( result =>  {
+          console.log(result);
           this.employees = result;
-          this.employees.map(x => {
-            this.departments.map(y => {
-              if (x.departmentId === y.id) {
-                x.department = y;
-              }
+          if(this.employees.length > 0) {
+            this.employees.map(x => {
+              this.departments.map(y => {
+                if (x.departmentId === y.id) {
+                  x.department = y;
+                }
+              });
             });
-          });
+          }
           resolve();
       }, error => {
         this.alertService.error('Feedback', `${error.error[0].errorMessage}`);

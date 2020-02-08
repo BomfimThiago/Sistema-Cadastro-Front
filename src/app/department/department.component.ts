@@ -37,7 +37,7 @@ export class DepartmentComponent implements OnInit {
         .subscribe(result => {
           this.alertService.success('Feedback', 'Department successfully deleted');
           this.carregarTela();
-        }, error => this.alertService.success('Feedback', 'There was an unexpected error')
+        }, error => this.alertService.error('Feedback', 'There was an unexpected error')
       );
     });
       this.blockUi.stop();
@@ -57,6 +57,7 @@ export class DepartmentComponent implements OnInit {
   private getAllDepartments(): void {
     this.departmentService.getDepartments()
       .subscribe(result => {
+        console.log(result);
         this.departments = result;
       });
   }

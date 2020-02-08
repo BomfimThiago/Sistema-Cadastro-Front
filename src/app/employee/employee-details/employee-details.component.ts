@@ -7,6 +7,7 @@ import { AlertService } from 'ngx-ui-hero';
 import { EmployeeService } from '../employee.service';
 import { BlockUi } from 'ngx-ui-hero';
 import { finalize } from 'rxjs/operators';
+import { EmployeeCadastroModel } from '../employee.cadastro.model';
 
 @Component({
   selector: 'app-employee-details',
@@ -17,6 +18,7 @@ export class EmployeeDetailsComponent implements OnInit {
   blockUi = new BlockUi();
 
   employee: EmployeeModel;
+  employeeCadastro: EmployeeCadastroModel;
   editing: boolean;
   employeeTitle: string;
   form: FormGroup;
@@ -32,16 +34,15 @@ export class EmployeeDetailsComponent implements OnInit {
     this.employee = new EmployeeModel();
 
     this.form = this.formBuilder.group({
-      id: [null, Validators.required],
       name: [null, [Validators.minLength(3),  Validators.required]],
-      email: [null, [Validators.email, Validators.required]],
       contact: [null, Validators.required],
       cpf: [null, [Validators.maxLength(11), Validators.minLength(11), Validators.required]],
+      email: [null, [Validators.email, Validators.required]],
       age: [null, Validators.required],
-      departmentId: [null, Validators.required],
-      department: [null],
       joinDate: [null, Validators.required],
-      resignedDate: [null]
+      resignedDate: [null],
+      departmentId: [null, Validators.required],
+      // department: [null],
     });
   }
 
@@ -96,10 +97,14 @@ export class EmployeeDetailsComponent implements OnInit {
   }
 
   private createEmployee(): void {
-    this.employee = this.form.value;
+    
+    this.employeeCadastro = this.form.value
+    console.log(this.employeeCadastro);
+    console.log(this.form.value);
+    this.employeeCadastro = this.form.value;
     this.blockUi.start('Criando...');
 
-    this.employeeService.createEmployee(this.employee)
+    this.employeeService.createEmployee(this.form.value)
       .pipe(finalize( () => this.blockUi.stop()))
       .subscribe( result => {
         this.alertService.success('Feedback', 'Employee successfully created');
