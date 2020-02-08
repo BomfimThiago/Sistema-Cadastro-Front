@@ -92,7 +92,10 @@ export class EmployeeComponent implements OnInit {
       this.getEmployeesBySearch()
     ])
     .then(() => this.blockUi.stop())
-    .catch(error => this.alertService.error('Feedback', `${error.error[0].errorMessage}`));
+    .catch(error => {
+      this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
+      this.blockUi.stop();
+    });
   }
 
   private getAllDepartments(): Promise<void> {

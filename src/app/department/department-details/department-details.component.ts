@@ -43,7 +43,8 @@ export class DepartmentDetailsComponent implements OnInit {
       this.router.navigate([`departments`]);
     } else {
       this.createDeparment();
-      // form.reset();
+      form.reset();
+      this.router.navigate([`departments`]);
     }
   }
 

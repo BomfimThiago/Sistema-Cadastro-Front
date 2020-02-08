@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/service/auth.service';
 import { UserModel } from 'src/app/model/user.model';
+import * as alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,10 @@ export class RegisterComponent implements OnInit {
   sendRegister(): void  {
     this.service.register(this.user)
       .subscribe(result =>  {
-        console.log('sucess');
-      })
+        alertify.success(`User was successfully created!Please proceed to login`);
+        this.toRegister();
+      }, error => {
+        alertify.error(`Error ${error.status} ${error.statusText}`);
+      });
   }
 }

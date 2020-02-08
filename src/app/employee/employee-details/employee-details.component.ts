@@ -80,9 +80,11 @@ export class EmployeeDetailsComponent implements OnInit {
   onSubmit(): void {
     if (this.editing) {
      this.updateEmployee();
+     this.router.navigate(['/employees']);
     } else {
       this.createEmployee();
-      // this.form.reset();
+      this.form.reset();
+      this.router.navigate(['/employees']);
     }
   }
 
