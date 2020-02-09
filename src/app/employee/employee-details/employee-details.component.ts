@@ -18,9 +18,7 @@ import { DepartmentModel } from 'src/app/department/department.model';
 })
 export class EmployeeDetailsComponent implements OnInit {
   blockUi = new BlockUi();
-
   employee: EmployeeModel;
-  employeeCadastro: EmployeeCadastroModel;
   departments: Array<DepartmentModel>;
   editing: boolean;
   employeeTitle: string;
@@ -38,6 +36,8 @@ export class EmployeeDetailsComponent implements OnInit {
     this.employee = new EmployeeModel();
 
     this.form = this.formBuilder.group({
+      id:[null],
+      department:[null],
       name: [null, [Validators.minLength(3),  Validators.required]],
       contact: [null, Validators.required],
       cpf: [null, [Validators.maxLength(11), Validators.minLength(11), Validators.required]],
@@ -45,7 +45,7 @@ export class EmployeeDetailsComponent implements OnInit {
       age: [null, Validators.required],
       joinDate: [null, Validators.required],
       resignedDate: [null],
-      departmentId: [null, Validators.required]
+      departmentId: [null, Validators.required],
     });
   }
 
@@ -63,6 +63,7 @@ export class EmployeeDetailsComponent implements OnInit {
         if (this.editing) {
           this.employeeService.getEmployeeById(this.employee.id)
           .subscribe(result => {
+            console.log(result);
             this.form.setValue(result);
             resolve();
           }, error => {
@@ -104,8 +105,12 @@ export class EmployeeDetailsComponent implements OnInit {
 
   private createEmployee(): void {
     this.blockUi.start('Criando...');
+    const employeeCadastro = this.form.value;
 
-    this.employeeService.createEmployee(this.form.value)
+    delete employeeCadastro.id;
+    delete employeeCadastro.department;
+
+    this.employeeService.createEmployee(employeeCadastro)
       .pipe(finalize( () => this.blockUi.stop()))
       .subscribe( result => {
         this.alertService.success('Feedback', 'Employee successfully created');

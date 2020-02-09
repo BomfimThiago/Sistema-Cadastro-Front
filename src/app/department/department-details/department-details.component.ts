@@ -40,11 +40,11 @@ export class DepartmentDetailsComponent implements OnInit {
   onSubmit(form): void {
     if (this.editing) {
       this.updateDepartment();
-      this.router.navigate([`departments`]);
+      this.router.navigate([`/departments`]);
     } else {
       this.createDeparment();
       form.reset();
-      this.router.navigate([`departments`]);
+      this.router.navigate([`/departments`]);
     }
   }
 
@@ -88,7 +88,7 @@ export class DepartmentDetailsComponent implements OnInit {
   }
   private updateDepartment(): void {
     this.blockUi.start('Updating...');
-
+    console.log(this.department.id);
     this.departmentService.updateDepartment(this.department.id, this.department)
       .pipe(finalize(() => this.blockUi.stop()))
       .subscribe(result => {

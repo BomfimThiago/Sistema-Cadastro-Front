@@ -5,10 +5,14 @@ import { UserModel } from '../model/user.model';
 import { map } from 'rxjs/operators';
 import {JwtHelperService} from '@auth0/angular-jwt';
 
+import { HttpHeaders } from '@angular/common/http';
+
 @Injectable()
 export class AuthService {
   baseUrl = 'http://localhost:5000/api/Auth/';
   jwtHelper = new JwtHelperService();
+
+
 
   constructor(private http: HttpClient) { }
 

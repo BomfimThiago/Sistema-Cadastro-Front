@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserModel } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { Router } from '@angular/router';
@@ -11,13 +11,16 @@ import * as alertify from 'alertifyjs';
 })
 export class HeaderComponent implements OnInit {
   userLoggedIn: boolean = false;
-  user = new UserModel();
+  @Input() user = new UserModel();
   constructor(
     private service: AuthService,
     private router: Router
     ) { }
 
   ngOnInit() {
+    if (this.user.username) {
+      this.userLoggedIn = true;
+    }
   }
 
   login(): void {
@@ -38,6 +41,7 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.userLoggedIn = false;
+    this.user = new UserModel();
     localStorage.removeItem('token');
     this.router.navigate(['/register']);
   }
