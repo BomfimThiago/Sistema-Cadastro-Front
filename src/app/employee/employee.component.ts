@@ -15,7 +15,7 @@ export class EmployeeComponent implements OnInit {
   blockUi = new BlockUi();
   department: DepartmentModel;
   departmentId: string;
-  search: string ;
+  search: string;
   employees: EmployeeModel[];
   departments: DepartmentModel[];
   columns: Array<DataGridColumnModel> = [
@@ -37,6 +37,7 @@ export class EmployeeComponent implements OnInit {
       data: 'department.name'
     },
   ];
+
   constructor(
     private employeeService: EmployeeService,
     private departmentService: DepartmentService,
@@ -52,15 +53,6 @@ export class EmployeeComponent implements OnInit {
        this.employeeService.getEmployeesBySearch(this.search, this.departmentId)
         .subscribe( result =>  {
           this.employees = result;
-          if (this.employees.length > 0) {
-            this.employees.map(x => {
-              this.departments.map(y => {
-                if (x.departmentId === y.id) {
-                  x.department = y;
-                }
-              });
-            });
-          }
           resolve();
       }, error => {
         this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
@@ -91,7 +83,8 @@ export class EmployeeComponent implements OnInit {
       this.getAllDepartments(),
       this.getEmployeesBySearch()
     ])
-    .then(() => this.blockUi.stop())
+    .then(() => this.manageDepartment())
+    .finally(() => this.blockUi.stop())
     .catch(error => {
       this.alertService.error('Feedback', `${error.error[0].errorMessage}`);
       this.blockUi.stop();
@@ -110,5 +103,17 @@ export class EmployeeComponent implements OnInit {
       });
     });
     return promise;
+  }
+
+  private manageDepartment(): void {
+    if (this.employees.length > 0) {
+        this.employees.map(x => {
+          this.departments.map(y => {
+          if (x.departmentId === y.id) {
+            x.department = y;
+          }
+        });
+      });
+    }
   }
 }

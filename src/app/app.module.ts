@@ -9,11 +9,12 @@ import { AppRoutingModule } from './app.routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DepartmentModule } from './department/department.module';
 import { EmployeeModule } from './employee/employee.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule} from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './service/auth.service';
 import { RegisterComponent } from './layout/register/register.component';
+import { Interceptors } from './interceptors/interceptors.service';
 
 
 @NgModule({
@@ -35,7 +36,13 @@ import { RegisterComponent } from './layout/register/register.component';
       RouterModule
    ],
    providers: [
-      AuthService
+      AuthService,
+      Interceptors,
+      {
+         provide: HTTP_INTERCEPTORS,
+         useClass: Interceptors,
+         multi: true,
+      }
    ],
    bootstrap: [
       AppComponent

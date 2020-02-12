@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { EmployeeModel } from './employee.model';
 import { Observable } from 'rxjs';
@@ -7,7 +7,6 @@ import { EmployeeCadastroModel } from './employee.cadastro.model';
 
 @Injectable()
 export class EmployeeService {
-
   url = `${environment.baseUrl}/employee`;
 
   constructor(private http: HttpClient) { }
@@ -27,7 +26,7 @@ export class EmployeeService {
   deleteEmployee(id: string): Observable<void> {
     return this.http.delete<void>(`${this.url}/${id}`);
   }
-  
+
   getEmployeesBySearch(q: string, departmentId?: string): Observable<Array<EmployeeModel>> {
     return this.http.get<Array<EmployeeModel>>(`${this.url}/search?q=${q}&departmentId=${departmentId}`);
   }
